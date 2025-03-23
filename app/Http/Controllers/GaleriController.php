@@ -12,8 +12,7 @@ class GaleriController extends Controller
     public function index()
     {
 
-        $galeri = Galeri::latest()
-            ->get();
+        $galeri = Galeri::latest()->get();
         $videos = Video::latest()
             ->get();
 

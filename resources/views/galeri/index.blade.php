@@ -41,11 +41,33 @@
                 </div>
             </div>
 
-            <!-- CTA -->
-            <div class="text-center mt-8">
-                <a href="/galeri" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">Lihat
-                    Semua Galeri</a>
-            </div>
+
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    let currentPage = 1;
+                    const loadMoreBtn = document.getElementById('load-more');
+
+                    if (loadMoreBtn) {
+                        loadMoreBtn.addEventListener('click', function() {
+                            const url = this.getAttribute('data-url') + '?page=' + (currentPage + 1);
+
+                            fetch(url)
+                                .then(response => response.json())
+                                .then(data => {
+                                    document.getElementById('galeri-list').insertAdjacentHTML('beforeend', data
+                                        .html);
+                                    if (!data.hasMorePages) {
+                                        loadMoreBtn.style.display = 'none';
+                                    }
+                                    currentPage++;
+                                })
+                                .catch(error => console.error('Error:', error));
+                        });
+                    }
+                });
+            </script>
+
 
             <!-- Modal -->
             <div x-show="openModal" x-cloak

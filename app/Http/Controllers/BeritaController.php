@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,7 +14,7 @@ class BeritaController extends Controller
         // Ambil hanya berita yang publish
         $berita = Berita::where('status', 'publish')
             ->orderBy('tanggal_publish', 'desc')
-            ->paginate(6);
+            ->paginate(5);
 
         // Ambil artikel terbaru untuk sidebar
         $latestPosts = Berita::where('status', 'publish')
@@ -30,13 +31,21 @@ class BeritaController extends Controller
             ->where('status', 'publish')
             ->firstOrFail();
 
+        $jumlahKomentar = Komentar::where('berita_id', $berita->id)->count();
+
         $randomPosts = Berita::where('status', 'publish')
             ->inRandomOrder()
-            ->limit(4)
+            ->limit(5)
             ->get();
 
-        return view('berita.show', compact('berita', 'randomPosts'));
+        $komentar = Komentar::where('berita_id', $berita->id)
+            ->latest()
+            ->get();
+
+
+        return view('berita.show', compact('berita', 'randomPosts', 'jumlahKomentar', 'komentar'));
     }
+
 
     public function search(Request $request)
     {

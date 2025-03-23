@@ -50,13 +50,14 @@ class BeritaResource extends Resource
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('attachments')
-                    ->label('Lampiran Foto')
+                    ->label('Lampiran PDF')
                     ->disk('public')
-                    ->image()
-                    ->openable()
+                    ->directory('berita-attachments')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->openable() // Bisa dibuka langsung jika PDF
+                    ->downloadable() // Aktifkan tombol download di CMS jika perlu
                     ->multiple()
-                    ->reorderable()
-                    ->directory('berita-attachments'),
+                    ->reorderable(),
                 Forms\Components\DateTimePicker::make('tanggal_publish'),
                 Forms\Components\Select::make('status')
                     ->options([
