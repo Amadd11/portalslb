@@ -44,7 +44,8 @@
                     </button>
                     <div
                         class="absolute bg-white shadow rounded mt-2 py-2 w-40 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 translate-y-2">
-                        <a href="/profil" class="block px-4 py-2 text-black hover:bg-gray-100">Sekolah</a>
+                        <a href="{{ route('sekolah.index') }}"
+                            class="block px-4 py-2 text-black hover:bg-gray-100">Sekolah</a>
                         <a href="{{ route('guru.index') }}"
                             class="block px-4 py-2 text-black hover:bg-gray-100">Guru</a>
                     </div>
@@ -130,7 +131,7 @@
                 <p><i class="fas fa-phone mr-2"></i> 0842 815131</p>
             </div>
         </div>
-        &copy; {{ date('Y') }} Sekolah Kita. All rights reserved.
+        <div class="items-center">&copy; {{ date('Y') }} Sekolah Kita. All rights reserved.</div>
     </footer>
 </body>
 

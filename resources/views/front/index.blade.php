@@ -4,7 +4,7 @@
 
 @section('content')
     {{-- Hero Section --}}
-    <section class="relative w-full h-full py-20 bg-gradient-to-b from-white via-gray-300 to-gray-100">
+    <section class="relative w-full h-full py-20 bg-gradient-to-b from-white via-gray-300 to-gray-100 mb-18">
         <div class="container mx-auto px-15 relative flex flex-col lg:flex-row items-center justify-center gap-3 ">
             {{-- Left Content --}}
             <div class="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
@@ -75,32 +75,83 @@
         </script>
     </section>
 
-    {{-- Sambutan Kepala Sekolah --}}
-    <section id="profil" class="py-8 px-4 sm:px-6 bg-white">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <!-- Foto Kepala Sekolah -->
-            <div class="flex justify-center">
-                <img src="{{ asset('assets/images/foto-sambutan.jpg') }}" alt="Kepala Sekolah"
-                    class="w-80 h-auto object-cover rounded-lg">
+    <!-- Sambutan + Visi Misi + Pengumuman Section -->
+    <section id="profil" class="py-8 px-4 sm:px-6 bg-white scroll-mt-20">
+        <div class=" px-4 mx-auto">
+
+            <!-- Grid Utama -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+
+                <!-- Kolom Kiri - Foto -->
+                <div class="flex justify-center items-start">
+                    <img src="{{ asset('assets/images/foto-sambutan.png') }}" alt="Kepala Sekolah"
+                        class="w-full h-[400px] object-cover rounded-4xl">
+                </div>
+
+                <!-- Kolom Tengah - Sambutan -->
+                <div class="flex flex-col justify-center space-y-4">
+                    <span class="inline-block bg-blue-100 text-blue-800 text-2xl font-semibold px-4 py-1 rounded-full mb-2">
+                        Sambutan Kepala Sekolah
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-2">Selamat Datang</h2>
+                    <p class="text-gray-700 mb-2">Assalamualaikum Warahmatullah Wabarakatuh</p>
+                    <p class="text-gray-700 text-base leading-relaxed text-justify">
+                        Alhamdulillah, kami bersyukur kepada Allah SWT karena dengan rahmat dan karunia-Nya, akhirnya kami
+                        dapat
+                        memperbarui Website SMK Negeri Contoh. Kami dengan tulus menyambut Anda di Website ini yang
+                        ditujukan
+                        untuk semua unsur pimpinan, guru, karyawan, siswa, dan masyarakat umum.
+                    </p>
+                    <p class="text-gray-700 text-base leading-relaxed text-justify">
+                        Melalui website ini, kami berharap semua pihak dapat mengakses informasi mengenai profil sekolah,
+                        kegiatan, dan fasilitas kami. Tentu saja, website sekolah kami masih memiliki kekurangan. Oleh
+                        karena
+                        itu, kami mengharapkan masukan dan kritik yang membangun untuk kemajuan ke depannya.
+                    </p>
+                </div>
+
+                <!-- Kolom Kanan - Visi Misi + Pengumuman -->
+                <aside class="space-y-4 w-full md:w-100">
+                    <!-- Visi Misi -->
+                    <div class="bg-gray-300/45 p-7 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-bold mb-2 text-center">Visi</h2>
+                        <p class="text-gray-700 text-sm mb-3 text-justify">Terwujudnya SLB Negeri 1 Lebong yang <span
+                                class="font-bold">HEBAT</span>
+                            (<span class="font-bold">H</span>umanis, <span class="font-bold">E</span>dukatif, <span
+                                class="font-bold">B</span>erkarakter, <span class="font-bold">A</span>khlak Mulia, <span
+                                class="font-bold">T</span>erampil).
+                        </p>
+                        <h2 class="text-2xl font-bold mb-2 text-center">Misi</h2>
+                        <ul class="list-disc px-2 text-gray-700 space-y-1 text-sm">
+                            <li>Sekolah humanis yang memberi kebebasan berkreativitas sesuai bakat peserta didik
+                                berkebutuhan khusus.</li>
+                            <li>Pendidikan yang membangun karakter peserta didik berkebutuhan khusus.</li>
+                            <li>Lingkungan sekolah yang peduli, bersih, aman, asri, dan sehat.</li>
+                            <li>Peserta didik berkebutuhan khusus yang mandiri, terampil, jujur, dan religious.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Pengumuman -->
+                    <div class="bg-blue-50 p-3 rounded-lg shadow-md space-y-3">
+                        <h3 class="text-xl font-semibold text-blue-800">Pengumuman</h3>
+                        <ul class="space-y-1 text-sm text-blue-900">
+                            <li>📢 Penerimaan Siswa Baru 2025 telah dibuka!</li>
+                            <li>📢 Ujian Akhir Semester dimulai 10 April 2025.</li>
+                            <li>📢 Libur Nasional pada 1 Mei 2025.</li>
+                            <li>📢 Workshop Guru & Staff tanggal 15 Mei 2025.</li>
+                        </ul>
+                        <a href="/pengumuman" class="block text-blue-600 hover:underline text-xs">Lihat Semua →</a>
+                    </div>
+                </aside>
+
             </div>
-            <!-- Sambutan -->
-            <div>
-                <span
-                    class="inline-block bg-blue-100 text-blue-800 text-2xl font-semibold px-4 py-1 rounded-full mb-4">Sambutan
-                    Kepala Sekolah</span>
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Selamat Datang</h2>
-                <p class="text-gray-700 mb-4">Assalamualaikum Warahmatullah Wabarakatuh</p>
-                <p class="text-gray-700 text-base leading-relaxed">
-                    Alhamdulillah, kami bersyukur kepada Allah SWT karena dengan rahmat dan karunia-Nya, akhirnya kami dapat
-                    memperbarui Website SMK Negeri Contoh. Kami dengan tulus menyambut Anda di Website ini yang ditujukan
-                    untuk semua unsur pimpinan, guru, karyawan, siswa, dan masyarakat umum.
-                </p>
-                <p class="text-gray-700 text-base leading-relaxed mt-2">
-                    Melalui website ini, kami berharap semua pihak dapat mengakses informasi mengenai profil sekolah,
-                    kegiatan, dan fasilitas kami. Tentu saja, website sekolah kami masih memiliki kekurangan. Oleh karena
-                    itu, kami mengharapkan masukan dan kritik yang membangun untuk kemajuan ke depannya.
-                </p>
+
+            <!-- Link Galeri di Bawah Grid -->
+            <div class="flex justify-center pr-100 mt-3">
+                <a href="{{ route('sekolah.index') }}" class="text-blue-600 font-medium hover:underline">Lihat Profil
+                    Sekolah →</a>
             </div>
+
         </div>
     </section>
 
@@ -122,7 +173,7 @@
 
     {{-- Berita Terbaru --}}
     <section id="berita" class="mt-16 px-4 sm:px-6">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-center">Berita Terbaru</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-center">Artikel Terbaru</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
             @foreach ($berita as $post)
                 <div class="bg-white rounded-lg shadow p-4 hover:shadow-lg hover:scale-105 transition ">

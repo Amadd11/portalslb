@@ -13,9 +13,15 @@ class BeritaController extends Controller
         // Ambil hanya berita yang publish
         $berita = Berita::where('status', 'publish')
             ->orderBy('tanggal_publish', 'desc')
-            ->paginate(10);
+            ->paginate(6);
 
-        return view('berita.index', compact('berita'));
+        // Ambil artikel terbaru untuk sidebar
+        $latestPosts = Berita::where('status', 'publish')
+            ->orderBy('tanggal_publish', 'desc')
+            ->limit(5)
+            ->get();
+
+        return view('berita.index', compact('berita', 'latestPosts'));
     }
 
     public function show($slug)
@@ -24,8 +30,14 @@ class BeritaController extends Controller
             ->where('status', 'publish')
             ->firstOrFail();
 
-        return view('berita.show', compact('berita'));
+        $randomPosts = Berita::where('status', 'publish')
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+
+        return view('berita.show', compact('berita', 'randomPosts'));
     }
+
     public function search(Request $request)
     {
         $query = $request->input('q');
