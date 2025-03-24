@@ -47,8 +47,12 @@ class BeritaResource extends Resource
                     ->directory('berita-thumbnails')
                     ->required(),
                 Forms\Components\RichEditor::make('isi')
-                    ->required()
-                    ->columnSpanFull(),
+                    ->disableToolbarButtons([
+                        'blockquote', // atau tombol lain yang kamu tidak perlukan
+                    ])
+                    ->extraInputAttributes([
+                        'style' => 'text-indent: 0; margin: 0;',
+                    ])->columnSpanFull(),
                 Forms\Components\FileUpload::make('attachments')
                     ->label('Lampiran PDF')
                     ->disk('public')

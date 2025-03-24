@@ -34,9 +34,11 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                 @endif
-                <div class="prose list-decimal max-w-none dark:prose-invert">
+
+                <div class="rich-content">
                     {!! $berita->isi !!}
                 </div>
+
 
                 @if (!empty($berita->attachments))
                     <div class="mt-6 space-y-2">
