@@ -36,6 +36,9 @@ class LampiranResource extends Resource
                 Forms\Components\Select::make('tipe')
                     ->options([
                         'profil' => 'Profil Sekolah',
+                        'kurikulum sdlb' => 'Kurikulum SDLB',
+                        'kurikulum smplb' => 'Kurikulum SMPLB',
+                        'kurikulum smalb' => 'Kurikulum SMALB',
                     ])
                     ->required()
                     ->label('Tipe Lampiran')
@@ -53,10 +56,8 @@ class LampiranResource extends Resource
                 Tables\Columns\TextColumn::make('tipe')
                     ->badge()
                     ->colors([
-                        'success' => 'galeri',
+                        'success' => 'kurikulum',
                         'info' => 'profil',
-                        'warning' => 'fasilitas',
-                        'secondary' => 'lainnya',
                     ])
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -72,6 +73,9 @@ class LampiranResource extends Resource
                 Tables\Filters\SelectFilter::make('tipe')
                     ->options([
                         'profil' => 'Profil Sekolah',
+                        'kurikulum sdlb' => 'Kurikulum SDLB',
+                        'kurikulum smplb' => 'Kurikulum SMLB',
+                        'kurikulum smalb' => 'Kurikulum SMALB',
                     ]),
             ])
             ->actions([

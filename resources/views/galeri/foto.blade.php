@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="container mx-auto py-12 px-4" x-data="{ openModal: false, modalImage: '' }">
-        <h1 class="text-4xl font-bold text-center mb-12">Foto Kegiatan Sekolah</h1>
+        <h1 class="text-4xl font-bold text-center mb-12 uppercase">Foto Kegiatan Sekolah</h1>
         <div class="bg-white">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

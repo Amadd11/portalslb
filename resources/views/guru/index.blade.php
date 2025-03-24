@@ -3,9 +3,8 @@
 @section('title', 'Portal Sekolah')
 
 @section('content')
-    <section class="py-10 bg-white text-center">
-        <h3 class="text-blue-800 font-semibold text-sm uppercase tracking-widest mb-2">Profil Guru</h3>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-10">Daftar Guru di Sekolah Kami</h2>
+    <section class="container py-12 px-4 mx-auto bg-white text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-10 uppercase">Profil Kepegawaian di Sekolah Kami</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
             <!-- Guru  -->

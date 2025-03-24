@@ -29,7 +29,8 @@
                     class="absolute bg-white shadow rounded mt-2 py-2 w-40 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 translate-y-2">
                     <a href="{{ route('sekolah.index') }}"
                         class="block px-4 py-2 text-black hover:bg-gray-100">Sekolah</a>
-                    <a href="{{ route('guru.index') }}" class="block px-4 py-2 text-black hover:bg-gray-100">Guru</a>
+                    <a href="{{ route('guru.index') }}"
+                        class="block px-4 py-2 text-black hover:bg-gray-100">Kepegawaian</a>
                 </div>
             </div>
 
@@ -51,6 +52,8 @@
                     <a href="{{ route('galeri.video') }}" class="block px-4 py-2 text-black hover:bg-gray-100">Video</a>
                 </div>
             </div>
+            <a href="{{ route('kurikulum.index') }}" class="text-black hover:text-blue-800 transition">Kurikulum</a>
+
 
         </nav>
 
@@ -81,7 +84,7 @@
             </button>
             <div x-show="openProfil" class="mt-2 space-y-2 pl-4">
                 <a href="{{ route('sekolah.index') }}" class="block text-black hover:text-blue-800">Sekolah</a>
-                <a href="{{ route('guru.index') }}" class="block text-black hover:text-blue-800">Guru</a>
+                <a href="{{ route('guru.index') }}" class="block text-black hover:text-blue-800">Kepegawaian</a>
             </div>
         </div>
 
@@ -103,6 +106,7 @@
                 <a href="{{ route('galeri.video') }}" class="block text-black hover:text-blue-800">Video</a>
             </div>
         </div>
+        <a href="{{ route('kurikulum.index') }}" class="text-black hover:text-blue-800 transition">Kurikulum</a>
     </div>
 </div>
 

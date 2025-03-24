@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="container mx-auto py-12 px-4">
-        <h1 class="text-4xl font-bold text-center mb-12">Video Kegiatan Sekolah</h1>
+        <h1 class="text-4xl font-bold text-center mb-12 uppercase">Video Kegiatan Sekolah</h1>
         <div class="bg-white">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

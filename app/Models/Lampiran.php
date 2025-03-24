@@ -18,6 +18,6 @@ class Lampiran extends Model
 
     public static function getTipeOptions()
     {
-        return ['profil'];
+        return ['profil', 'kurikulum sdlb', 'kurikulum smplb', 'kurikulum smalb'];
     }
 }

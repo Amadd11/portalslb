@@ -38,6 +38,7 @@ class Berita extends Model
         $this->attributes['judul'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
     public function setIsiAttribute($value)
     {
         $this->attributes['isi'] = str_replace('&nbsp;', ' ', $value);

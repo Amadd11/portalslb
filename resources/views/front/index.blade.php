@@ -72,9 +72,10 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
 
                 <!-- Kolom Kiri - Foto -->
-                <div class="flex justify-center items-start">
+                <div class="flex justify-center items-start h-full">
                     <img src="{{ asset('assets/images/foto-sambutan.png') }}" alt="Kepala Sekolah"
-                        class="w-full h-[400px] object-cover rounded-4xl">
+                        class="w-full max-h-[600px] object-contain rounded-4xl bg-white">
+
                 </div>
 
                 <!-- Kolom Tengah - Sambutan -->
@@ -101,6 +102,17 @@
 
                 <!-- Kolom Kanan - Visi Misi + Pengumuman -->
                 <aside class="space-y-4 w-full md:w-100">
+                    <!-- Pengumuman -->
+                    <div class="bg-blue-50 p-3 rounded-lg shadow-md space-y-3">
+                        <h3 class="text-xl font-semibold text-blue-800">Pengumuman</h3>
+                        <ul class="space-y-1 text-sm text-blue-900">
+                            <li>📢 Penerimaan Siswa Baru 2025 telah dibuka!</li>
+                            <li>📢 Ujian Akhir Semester dimulai 10 April 2025.</li>
+                            <li>📢 Libur Nasional pada 1 Mei 2025.</li>
+                            <li>📢 Workshop Guru & Staff tanggal 15 Mei 2025.</li>
+                        </ul>
+                        <a href="/pengumuman" class="block text-blue-600 hover:underline text-xs">Lihat Semua →</a>
+                    </div>
                     <!-- Visi Misi -->
                     <div class="bg-gray-300/45 p-7 rounded-lg shadow-md">
                         <h2 class="text-2xl font-bold mb-2 text-center">Visi</h2>
@@ -118,18 +130,6 @@
                             <li>Lingkungan sekolah yang peduli, bersih, aman, asri, dan sehat.</li>
                             <li>Peserta didik berkebutuhan khusus yang mandiri, terampil, jujur, dan religious.</li>
                         </ul>
-                    </div>
-
-                    <!-- Pengumuman -->
-                    <div class="bg-blue-50 p-3 rounded-lg shadow-md space-y-3">
-                        <h3 class="text-xl font-semibold text-blue-800">Pengumuman</h3>
-                        <ul class="space-y-1 text-sm text-blue-900">
-                            <li>📢 Penerimaan Siswa Baru 2025 telah dibuka!</li>
-                            <li>📢 Ujian Akhir Semester dimulai 10 April 2025.</li>
-                            <li>📢 Libur Nasional pada 1 Mei 2025.</li>
-                            <li>📢 Workshop Guru & Staff tanggal 15 Mei 2025.</li>
-                        </ul>
-                        <a href="/pengumuman" class="block text-blue-600 hover:underline text-xs">Lihat Semua →</a>
                     </div>
                 </aside>
 

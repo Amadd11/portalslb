@@ -8,6 +8,7 @@ use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\KomentarController;
 use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\KurikulumController;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
@@ -22,4 +23,5 @@ Route::get('/guru', [GuruController::class, 'index'])->name('guru.index');
 Route::get('/foto', [GaleriController::class, 'index'])->name('galeri.foto');
 Route::get('/video', [GaleriController::class, 'video'])->name('galeri.video');
 Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah.index');
+Route::get('/kurikulum', [KurikulumController::class, 'index'])->name('kurikulum.index');
 Route::post('/komentar', [KomentarController::class, 'store'])->name('komentar.store');

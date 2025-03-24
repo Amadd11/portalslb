@@ -6,7 +6,7 @@
     <section class="container mx-auto px-4 py-12">
 
         <!-- Header -->
-        <h2 class="text-4xl font-bold text-center mb-12">Artikel</h2>
+        <h2 class="text-4xl font-bold text-center mb-12 uppercase">Artikel</h2>
 
         <!-- Grid Layout -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">

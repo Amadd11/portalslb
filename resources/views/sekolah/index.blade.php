@@ -6,7 +6,7 @@
 
     <!-- Profil Sekolah Section -->
     <section id="profil" class="py-12 px-4 sm:px-6 bg-white">
-        <h1 class="text-3xl font-bold text-center mb-12">Profil <br>
+        <h1 class="text-3xl font-bold text-center mb-12 uppercase">Profil <br>
             SLB Negeri 1 Lebong</h1>
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
 
