@@ -19,6 +19,7 @@ Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.sh
 Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 
 Route::get('/guru', [GuruController::class, 'index'])->name('guru.index');
-Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
+Route::get('/foto', [GaleriController::class, 'index'])->name('galeri.foto');
+Route::get('/video', [GaleriController::class, 'video'])->name('galeri.video');
 Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah.index');
 Route::post('/komentar', [KomentarController::class, 'store'])->name('komentar.store');

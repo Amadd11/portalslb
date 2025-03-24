@@ -34,10 +34,11 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                 @endif
-                <div class="prose max-w-none dark:prose-invert">
+                <div class="prose list-decimal max-w-none dark:prose-invert">
                     {!! $berita->isi !!}
                 </div>
-                @if ($berita->attachments)
+
+                @if (!empty($berita->attachments))
                     <div class="mt-6 space-y-2">
                         <h3 class="font-semibold text-lg mb-2">📎 Lampiran PDF:</h3>
                         <ul class="space-y-1">

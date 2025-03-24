@@ -3,27 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\Category;
 use App\Models\Komentar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class BeritaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil hanya berita yang publish
-        $berita = Berita::where('status', 'publish')
-            ->orderBy('tanggal_publish', 'desc')
-            ->paginate(5);
+        $query = Berita::where('status', 'publish');
 
-        // Ambil artikel terbaru untuk sidebar
+        // Tambahkan filter kategori jika ada request
+        if ($request->has('kategori') && $request->kategori != '') {
+            $query->where('category_id', $request->kategori);
+        }
+
+        $berita = $query->orderBy('tanggal_publish', 'desc')->paginate(5);
+
+        // Sidebar
         $latestPosts = Berita::where('status', 'publish')
             ->orderBy('tanggal_publish', 'desc')
             ->limit(5)
             ->get();
 
-        return view('berita.index', compact('berita', 'latestPosts'));
+        $categories = Category::orderByDesc('id')->get();
+
+        return view('berita.index', compact('berita', 'latestPosts', 'categories'));
     }
+
 
     public function show($slug)
     {
@@ -61,6 +69,8 @@ class BeritaController extends Controller
             ->limit(5)
             ->get();
 
-        return view('berita.index', compact('berita', 'latestPosts'));
+        $categories = Category::orderByDesc('id')->get();
+
+        return view('berita.index', compact('berita', 'latestPosts', 'categories'));
     }
 }

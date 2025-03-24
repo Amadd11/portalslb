@@ -51,20 +51,62 @@
                 <!-- Kondisi Lapangan -->
                 <div>
                     <h2 class="text-3xl font-bold mb-4">Kondisi Lapangan</h2>
-                    <ul class="list-decimal text-gray-700 space-y-2 ml-5 text-justify">
-                        <li>Status Tanah: <span class="font-medium">Milik Sendiri</span></li>
-                        <li>Surat Izin Bangunan :
-                            <span class="font-medium">No. 527/Dispora/VIII/2008</span><br>
-                            Tanggal: <span class="font-medium">01 Juli 2008</span>
-                        </li>
-                        <li>SK Pendirian:
-                            <span class="font-medium">Nomor 484 Tahun 2007</span><br>
-                            Tanggal: <span class="font-medium">21 Agustus 2007</span>
-                        </li>
-                        <li>NPSN: <span class="font-medium">10703434</span></li>
-                        <li>Luas Tanah: <span class="font-medium">8.100 m<sup>2</sup></span></li>
-                    </ul>
+                    <div class="overflow-x-auto">
+                        <table class="w-150 table-auto border border-gray-300 rounded-lg shadow">
+                            <tbody>
+                                <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-200 transition">
+                                    <td class="border px-4 py-3 font-semibold text-gray-700">Status Tanah</td>
+                                    <td class="border px-4 py-3 text-gray-600">Milik Sendiri</td>
+                                </tr>
+                                <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-100 transition">
+                                    <td class="border px-4 py-3 font-semibold text-gray-700">Surat Izin Bangunan</td>
+                                    <td class="border px-4 py-3 text-gray-600">
+                                        No. 527/Dispora/VIII/2008 <br>
+                                        Tanggal: 01 Juli 2008
+                                    </td>
+                                </tr>
+                                <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-100 transition">
+                                    <td class="border px-4 py-3 font-semibold text-gray-700">SK Pendirian</td>
+                                    <td class="border px-4 py-3 text-gray-600">
+                                        Nomor 484 Tahun 2007 <br>
+                                        Tanggal: 21 Agustus 2007
+                                    </td>
+                                </tr>
+                                <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-100 transition">
+                                    <td class="border px-4 py-3 font-semibold text-gray-700">NPSN</td>
+                                    <td class="border px-4 py-3 text-gray-600">10703434</td>
+                                </tr>
+                                <tr class="odd:bg-white even:bg-gray-50 hover:bg-gray-100 transition">
+                                    <td class="border px-4 py-3 font-semibold text-gray-700">Luas Tanah</td>
+                                    <td class="border px-4 py-3 text-gray-600">8.100 m<sup>2</sup></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
+                @if ($lampirans->count())
+                    <div class="mt-8 space-y-2">
+                        <h3 class="font-semibold text-lg mb-4">📄 Lampiran </h3>
+                        <ul class="space-y-2">
+                            @foreach ($lampirans as $lampiran)
+                                <li>
+                                    <a href="{{ Storage::url($lampiran->file_path) }}" target="_blank"
+                                        class="flex items-center space-x-2 text-blue-600 hover:underline">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-red-500" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 4v16m8-8H4" />
+                                        </svg>
+                                        <span>{{ $lampiran->judul }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+
             </div>
 
             <!-- Aside -->

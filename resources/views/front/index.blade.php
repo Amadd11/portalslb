@@ -2,6 +2,7 @@
 
 @section('title', 'Portal Sekolah')
 
+
 @section('content')
     {{-- Hero Section --}}
     <section class="relative w-full h-full py-20 bg-gradient-to-b from-white via-gray-300 to-gray-100 mb-18">
@@ -61,18 +62,6 @@
             </div>
         </div>
 
-        {{-- Swiper Script --}}
-        <script>
-            const swiper = new Swiper('.swiper-container', {
-                loop: true,
-                autoplay: {
-                    delay: 4000,
-                    disableOnInteraction: false,
-                },
-                effect: 'fade',
-                speed: 1000,
-            });
-        </script>
     </section>
 
     <!-- Sambutan + Visi Misi + Pengumuman Section -->
@@ -189,36 +178,9 @@
     </section>
 
     {{-- Galeri --}}
-    <section id="galeri" class="mt-16 mb-10 px-4 sm:px-6" x-data="{ openModal: false, modalImage: '' }">
+    <section id="galeri" class="mt-16 mb-10 px-4 sm:px-6" x-data="autoScrollGaleri">
         <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-center">Galeri Sekolah</h2>
-        <div x-data="{
-            scrollEl: null,
-            interval: null,
-            init() {
-                this.scrollEl = this.$refs.scrollContainer;
-                this.startAutoScroll();
-            },
-            startAutoScroll() {
-                this.interval = setInterval(() => {
-                    this.scrollEl.scrollLeft += 1;
-                    if (this.scrollEl.scrollLeft >= this.scrollEl.scrollWidth / 2) {
-                        this.scrollEl.scrollLeft = 0;
-                    }
-                }, 20);
-            },
-            pauseScroll() {
-                clearInterval(this.interval);
-            },
-            resumeScroll() {
-                this.startAutoScroll();
-            },
-            scrollPrev() {
-                this.scrollEl.scrollLeft -= 250;
-            },
-            scrollNext() {
-                this.scrollEl.scrollLeft += 250;
-            }
-        }" class="overflow-hidden relative group">
+        <div class="overflow-hidden relative group">
             <!-- Scroll Container -->
             <div class="overflow-x-auto overflow-y-hidden whitespace-nowrap no-scrollbar" x-ref="scrollContainer"
                 @mouseenter="pauseScroll" @mouseleave="resumeScroll">
@@ -229,8 +191,8 @@
                         <div class="w-[180px] sm:w-[220px] md:w-[250px] flex-shrink-0">
                             <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
                                 <img src="{{ asset(Storage::url($foto->gambar_url)) }}" alt="{{ $foto->judul }}"
-                                    @click="openModal = true; modalImage = '{{ asset(Storage::url($foto->gambar_url)) }}'"
-                                    class="absolute inset-0 w-full h-full object-cover cursor-pointer hover:scale-95 transition duration-300">
+                                    @click="openImage('{{ asset(Storage::url($foto->gambar_url)) }}')"
+                                    class="absolute inset-0 w-full h-full object-cover cursor-pointer hover:scale-90 transition duration-300">
                             </div>
                             <h4 class="font-semibold text-center mt-2 text-sm truncate">{{ $foto->judul }}</h4>
                         </div>
@@ -261,20 +223,7 @@
                 class="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 ›
             </button>
-
-
         </div>
-
-        <style>
-            .no-scrollbar::-webkit-scrollbar {
-                display: none;
-            }
-
-            .no-scrollbar {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-        </style>
 
         <!-- Modal -->
         <div x-show="openModal" x-cloak class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
@@ -289,8 +238,11 @@
         <div class="text-center mt-6">
             <a href="/galeri" class="text-blue-600 font-medium hover:underline">Lihat Semua Galeri →</a>
         </div>
-
-
     </section>
 
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/swiper.js') }}"></script>
+    <script src="{{ asset('js/homepage.js') }}"></script>
+@endpush

@@ -8,6 +8,7 @@ use App\Models\Fasilitas;
 use Illuminate\Http\Request;
 use App\Models\CarouselImage;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class FrontController extends Controller
 {
@@ -19,6 +20,6 @@ class FrontController extends Controller
         $galeri = Galeri::latest()->take(8)->get();
         $images = CarouselImage::all();
 
-        return view('front.index', compact('fasilitas', 'berita', 'galeri', 'images'));
+        return view('front.index', compact('fasilitas', 'berita', 'galeri', 'images',));
     }
 }
