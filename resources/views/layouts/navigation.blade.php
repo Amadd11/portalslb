@@ -31,6 +31,7 @@
                         class="block px-4 py-2 text-black hover:bg-gray-100">Sekolah</a>
                     <a href="{{ route('guru.index') }}"
                         class="block px-4 py-2 text-black hover:bg-gray-100">Kepegawaian</a>
+                    <a href="{{ route('siswa.index') }}" class="block px-4 py-2 text-black hover:bg-gray-100">Siswa</a>
                 </div>
             </div>
 
@@ -85,6 +86,7 @@
             <div x-show="openProfil" class="mt-2 space-y-2 pl-4">
                 <a href="{{ route('sekolah.index') }}" class="block text-black hover:text-blue-800">Sekolah</a>
                 <a href="{{ route('guru.index') }}" class="block text-black hover:text-blue-800">Kepegawaian</a>
+                <a href="{{ route('siswa.index') }}" class="block text-black hover:text-blue-800">Siswa</a>
             </div>
         </div>
 

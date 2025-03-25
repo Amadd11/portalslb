@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('berita', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->string('judul');
             $table->string('thumbnail');
             $table->string('slug')->unique();

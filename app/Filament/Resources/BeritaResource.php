@@ -77,7 +77,6 @@ class BeritaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('category.nama_category')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('judul')
                     ->searchable(),

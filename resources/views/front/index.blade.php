@@ -105,14 +105,56 @@
                     <!-- Pengumuman -->
                     <div class="bg-blue-50 p-3 rounded-lg shadow-md space-y-3">
                         <h3 class="text-xl font-semibold text-blue-800">Pengumuman</h3>
-                        <ul class="space-y-1 text-sm text-blue-900">
-                            <li>📢 Penerimaan Siswa Baru 2025 telah dibuka!</li>
-                            <li>📢 Ujian Akhir Semester dimulai 10 April 2025.</li>
-                            <li>📢 Libur Nasional pada 1 Mei 2025.</li>
-                            <li>📢 Workshop Guru & Staff tanggal 15 Mei 2025.</li>
-                        </ul>
-                        <a href="/pengumuman" class="block text-blue-600 hover:underline text-xs">Lihat Semua →</a>
+
+                        <!-- Slider Container -->
+                        <div class="swiper pengumuman-slider max-w-[400px] mx-auto">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('assets/images/foto-sambutan.png') }}" alt="Poster 1"
+                                        class="rounded-lg shadow max-h-[250px] object-contain w-full">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('assets/images/logo-kemendikbud.png') }}" alt="Poster 2"
+                                        class="rounded-lg shadow max-h-[250px] object-contain w-full">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('storage/pengumuman/poster-3.jpg') }}" alt="Poster 3"
+                                        class="rounded-lg shadow max-h-[250px] object-contain w-full">
+                                </div>
+                            </div>
+                            <!-- Tombol Navigasi -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <!-- Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+
+                        <a href="/pengumuman" class="block text-blue-600 hover:underline text-xs mt-2 text-center">
+                            Lihat Semua Pengumuman →
+                        </a>
                     </div>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            new Swiper(".pengumuman-slider", {
+                                loop: true,
+                                autoplay: {
+                                    delay: 3000,
+                                    disableOnInteraction: false,
+                                },
+                                navigation: {
+                                    nextEl: ".swiper-button-next",
+                                    prevEl: ".swiper-button-prev",
+                                },
+                                pagination: {
+                                    el: ".swiper-pagination",
+                                    clickable: true,
+                                },
+                            });
+                        });
+                    </script>
+
+
                     <!-- Visi Misi -->
                     <div class="bg-gray-300/45 p-7 rounded-lg shadow-md">
                         <h2 class="text-2xl font-bold mb-2 text-center">Visi</h2>
