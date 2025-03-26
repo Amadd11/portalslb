@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\CarouselImage;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Pengumuman;
 
 class FrontController extends Controller
 {
@@ -19,7 +20,8 @@ class FrontController extends Controller
         $berita = Berita::where('status', 'publish')->latest()->take(3)->get();
         $galeri = Galeri::latest()->take(8)->get();
         $images = CarouselImage::all();
+        $pengumumans = Pengumuman::latest()->take(5)->get();
 
-        return view('front.index', compact('fasilitas', 'berita', 'galeri', 'images',));
+        return view('front.index', compact('fasilitas', 'berita', 'galeri', 'images', 'pengumumans'));
     }
 }

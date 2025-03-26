@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use App\Models\Category;
 use App\Models\Komentar;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -28,8 +29,10 @@ class BeritaController extends Controller
             ->get();
 
         $categories = Category::orderByDesc('id')->get();
+        $pengumumans = Pengumuman::latest()->take(5)->get();
 
-        return view('berita.index', compact('berita', 'latestPosts', 'categories'));
+
+        return view('berita.index', compact('berita', 'latestPosts', 'categories', 'pengumumans'));
     }
 
 

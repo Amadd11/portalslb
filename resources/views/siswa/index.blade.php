@@ -50,15 +50,30 @@
             <!-- Kanan: Sidebar -->
             <aside class="space-y-8">
                 <!-- Pengumuman -->
-                <div class="bg-blue-50 p-4 rounded-lg shadow-md space-y-4">
-                    <h3 class="text-xl font-semibold text-blue-800 mb-2">📢 Pengumuman</h3>
-                    <ul class="space-y-2 text-sm text-blue-900">
-                        <li>✅ Penerimaan Siswa Baru 2025 telah dibuka!</li>
-                        <li>✅ Ujian Akhir Semester dimulai 10 April 2025.</li>
-                        <li>✅ Libur Nasional pada 1 Mei 2025.</li>
-                        <li>✅ Workshop Guru & Staff tanggal 15 Mei 2025.</li>
-                    </ul>
-                    <a href="/pengumuman" class="block text-blue-600 hover:underline text-sm mt-2">Lihat Semua →</a>
+                <div class="bg-blue-50 p-3 rounded-lg shadow-md space-y-3">
+                    <h3 class="text-xl font-semibold text-blue-800">📢 Pengumuman</h3>
+
+                    <!-- Slider Container -->
+                    <div class="swiper pengumuman-slider relative max-w-full mx-auto">
+                        <div class="swiper-wrapper">
+                            @foreach ($pengumumans as $pengumuman)
+                                <div class="swiper-slide flex flex-col items-center text-center">
+                                    <!-- Gambar Pengumuman -->
+                                    <div class="relative w-full">
+                                        <img src="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
+                                            alt="{{ $pengumuman->judul }}"
+                                            class="rounded-lg shadow-md w-full h-[250px] object-cover" loading="lazy">
+                                    </div>
+
+                                    <!-- Judul Pengumuman -->
+                                    <h3 class="mt-3 text-lg font-semibold text-gray-800">
+                                        {{ $pengumuman->judul }}
+                                    </h3>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- Artikel Terbaru -->
@@ -90,7 +105,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
+    <script src="{{ asset('js/swiper.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('.datatable').DataTable({

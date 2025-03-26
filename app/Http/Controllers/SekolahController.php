@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use App\Models\Lampiran;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 
 class SekolahController extends Controller
@@ -13,7 +14,8 @@ class SekolahController extends Controller
     {
         $lampirans = Lampiran::where('tipe', 'profil')->get();
         $berita = Berita::take(5)->get();
+        $pengumumans = Pengumuman::latest()->take(5)->get();
 
-        return view('sekolah.index', compact('berita', 'lampirans'));
+        return view('sekolah.index', compact('berita', 'lampirans', 'pengumumans'));
     }
 }

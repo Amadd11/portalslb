@@ -54,7 +54,7 @@
                         @foreach ($images as $image)
                             <div class="swiper-slide">
                                 <img src="{{ asset(Storage::url($image->path)) }}" class="w-full h-full object-cover"
-                                    alt="{{ $image->title }}">
+                                    alt="{{ $image->title }}" loading="lazy">
                             </div>
                         @endforeach
                     </div>
@@ -104,56 +104,30 @@
                 <aside class="space-y-4 w-full md:w-100">
                     <!-- Pengumuman -->
                     <div class="bg-blue-50 p-3 rounded-lg shadow-md space-y-3">
-                        <h3 class="text-xl font-semibold text-blue-800">Pengumuman</h3>
+                        <h3 class="text-xl font-semibold text-blue-800">📢 Pengumuman</h3>
 
                         <!-- Slider Container -->
-                        <div class="swiper pengumuman-slider max-w-[400px] mx-auto">
+                        <div class="swiper pengumuman-slider relative max-w-[400px] mx-auto">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="{{ asset('assets/images/foto-sambutan.png') }}" alt="Poster 1"
-                                        class="rounded-lg shadow max-h-[250px] object-contain w-full">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="{{ asset('assets/images/logo-kemendikbud.png') }}" alt="Poster 2"
-                                        class="rounded-lg shadow max-h-[250px] object-contain w-full">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="{{ asset('storage/pengumuman/poster-3.jpg') }}" alt="Poster 3"
-                                        class="rounded-lg shadow max-h-[250px] object-contain w-full">
-                                </div>
+                                @foreach ($pengumumans as $pengumuman)
+                                    <div class="swiper-slide flex flex-col items-center text-center">
+                                        <!-- Gambar Pengumuman -->
+                                        <div class="relative w-full">
+                                            <img src="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
+                                                alt="{{ $pengumuman->judul }}"
+                                                class="rounded-lg shadow-md w-full h-[250px] object-cover" loading="lazy">
+                                        </div>
+
+                                        <!-- Judul Pengumuman -->
+                                        <h3 class="mt-3 text-lg font-semibold text-gray-800">
+                                            {{ $pengumuman->judul }}
+                                        </h3>
+                                    </div>
+                                @endforeach
                             </div>
-                            <!-- Tombol Navigasi -->
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                            <!-- Pagination -->
-                            <div class="swiper-pagination"></div>
                         </div>
 
-                        <a href="/pengumuman" class="block text-blue-600 hover:underline text-xs mt-2 text-center">
-                            Lihat Semua Pengumuman →
-                        </a>
                     </div>
-
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            new Swiper(".pengumuman-slider", {
-                                loop: true,
-                                autoplay: {
-                                    delay: 3000,
-                                    disableOnInteraction: false,
-                                },
-                                navigation: {
-                                    nextEl: ".swiper-button-next",
-                                    prevEl: ".swiper-button-prev",
-                                },
-                                pagination: {
-                                    el: ".swiper-pagination",
-                                    clickable: true,
-                                },
-                            });
-                        });
-                    </script>
-
 
                     <!-- Visi Misi -->
                     <div class="bg-gray-300/45 p-7 rounded-lg shadow-md">
@@ -209,7 +183,7 @@
             @foreach ($berita as $post)
                 <div class="bg-white rounded-lg shadow p-4 hover:shadow-lg hover:scale-105 transition ">
                     <img src="{{ asset(Storage::url($post->thumbnail)) }}" alt="{{ $post->judul }}"
-                        class="w-full h-70 object-cover rounded mb-4">
+                        class="w-full h-70 object-cover rounded mb-4" loading="lazy">
                     <h4 class="font-semibold mb-2">{{ $post->judul }}</h4>
                     <p class="text-sm text-gray-600">{{ Str::limit(strip_tags($post->isi), 150) }} </p>
                     <a href="{{ route('berita.show', $post->slug) }}"
@@ -224,8 +198,8 @@
         <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-center">Galeri Sekolah</h2>
         <div class="overflow-hidden relative group">
             <!-- Scroll Container -->
-            <div class="overflow-x-auto overflow-y-hidden whitespace-nowrap no-scrollbar" x-ref="scrollContainer"
-                @mouseenter="pauseScroll" @mouseleave="resumeScroll">
+            <div class="overflow-x-auto overflow-y-hidden whitespace-nowrap scroll-smooth no-scrollbar"
+                x-ref="scrollContainer" @mouseenter="pauseScroll" @mouseleave="resumeScroll">
                 <div class="flex gap-4 w-max">
 
                     <!-- Loop Galeri -->
@@ -268,14 +242,18 @@
         </div>
 
         <!-- Modal -->
-        <div x-show="openModal" x-cloak class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
-            @click.away="openModal = false">
+        <div x-show="openModal" x-cloak style="display: none;"
+            class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
+            @keydown.window.escape="openModal = false" @click.away="openModal = false">
+
             <div class="relative">
                 <img :src="modalImage" alt="Image" class="max-w-full max-h-[90vh] rounded-lg shadow-lg">
                 <button @click="openModal = false"
                     class="absolute top-2 right-2 bg-white rounded-full p-1 hover:bg-gray-200">✕</button>
             </div>
         </div>
+
+
 
         <div class="text-center mt-6">
             <a href="/galeri" class="text-blue-600 font-medium hover:underline">Lihat Semua Galeri →</a>

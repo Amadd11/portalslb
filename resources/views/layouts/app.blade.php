@@ -12,7 +12,7 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <title>@yield('title', 'Portal Sekolah')</title>
     @vite('resources/css/app.css') {{-- Tailwind CSS --}}
-    
+
 </head>
 
 <body class="bg-gray-50 text-gray-800 scroll-smooth">
