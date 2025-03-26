@@ -19,7 +19,11 @@ class SiswaResource extends Resource
 {
     protected static ?string $model = Siswa::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
+
+    protected static ?string $navigationLabel = 'Siswa';
+
+    protected static ?string $navigationGroup = 'Manajemen Profil';
 
     public static function form(Form $form): Form
     {
@@ -27,7 +31,13 @@ class SiswaResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('nis')
                     ->required()
-                    ->maxLength(255),
+                    ->live() // Update otomatis saat user mengetik
+                    ->afterStateUpdated(
+                        fn($state, callable $set) =>
+                        $set('nis_exists', Siswa::where('nis', $state)->exists())
+                    )
+                    ->maxLength(255)
+                    ->helperText(fn($get) => $get('nis_exists') ? '⚠️ NIS ini sudah digunakan' : ''),
                 Forms\Components\TextInput::make('nama_siswa')
                     ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                     ->lazy()
@@ -61,6 +71,7 @@ class SiswaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('nis')
+                    ->label("NIS")
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama_siswa')
                     ->searchable(),
@@ -88,10 +99,22 @@ class SiswaResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make(), // Filter Data yang Terhapus
+                Tables\Filters\SelectFilter::make('jenjang_id')
+                    ->label('Jenjang')
+                    ->relationship('jenjang', 'nama_jenjang')
+                    ->searchable()
+                    ->preload(),
+                Tables\Filters\SelectFilter::make('jenis_kelamin')
+                    ->label('Jenis Kelamin')
+                    ->options([
+                        'L' => 'Laki-Laki',
+                        'P' => 'Perempuan',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

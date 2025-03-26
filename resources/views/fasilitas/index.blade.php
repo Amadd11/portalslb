@@ -3,7 +3,7 @@
 @section('title', 'Portal Sekolah')
 
 @section('content')
-    <section class="container mx-auto py-12 px-4">
+    <section class="container mx-auto py-12 px-8">
         <h1 class="text-4xl font-bold text-center mb-12 uppercase">Fasilitas</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             @foreach ($fasilitas as $item)

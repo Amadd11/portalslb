@@ -17,7 +17,7 @@ class VideoResource extends Resource
 {
     protected static ?string $model = Video::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-video-camera';
 
     public static function form(Form $form): Form
     {
@@ -27,6 +27,7 @@ class VideoResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('youtube_id')
+                    ->label('Link Youtube')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('deskripsi')
@@ -42,6 +43,7 @@ class VideoResource extends Resource
                 Tables\Columns\TextColumn::make('judul')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('youtube_id')
+                    ->label('Link Youtube')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deskripsi')
                     ->searchable(),
@@ -59,6 +61,7 @@ class VideoResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

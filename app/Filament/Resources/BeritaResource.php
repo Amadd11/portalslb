@@ -23,7 +23,11 @@ class BeritaResource extends Resource
 {
     protected static ?string $model = Berita::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+
+    protected static ?string $navigationGroup = 'Manajemen Artikel';
+
+    protected static ?string $navigationLabel = 'Artikel';
 
     public static function form(Form $form): Form
     {
@@ -105,6 +109,7 @@ class BeritaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

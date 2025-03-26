@@ -3,7 +3,7 @@
 @section('title', 'Kurikulum 2013')
 
 @section('content')
-    <section class="container mx-auto py-12 px-8">
+    <section class="container mx-auto py-12">
         <h1 class="text-4xl font-bold text-center pr-100 mb-8 uppercase">Kurikulum </h1>
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2 space-y-4">
@@ -122,7 +122,7 @@
                     <h3 class="text-xl font-semibold text-blue-800">📢 Pengumuman</h3>
 
                     <!-- Slider Container -->
-                    <div class="swiper pengumuman-slider relative max-w-[400px] mx-auto">
+                    <div class="swiper pengumuman-slider relative max-w-full mx-auto">
                         <div class="swiper-wrapper">
                             @foreach ($pengumumans as $pengumuman)
                                 <div class="swiper-slide flex flex-col items-center text-center">
@@ -143,7 +143,6 @@
                     </div>
 
                 </div>
-
                 <!-- Artikel Terbaru -->
                 <div class="border border-gray-400 rounded-lg p-4">
                     <h4 class="font-semibold mb-4">📰 Artikel Terbaru</h4>

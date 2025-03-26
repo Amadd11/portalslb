@@ -20,7 +20,7 @@ class BeritaController extends Controller
             $query->where('category_id', $request->kategori);
         }
 
-        $berita = $query->orderBy('tanggal_publish', 'desc')->paginate(5);
+        $berita = $query->orderBy('tanggal_publish', 'desc')->paginate(4);
 
         // Sidebar
         $latestPosts = Berita::where('status', 'publish')
@@ -53,8 +53,11 @@ class BeritaController extends Controller
             ->latest()
             ->get();
 
+        $pengumumans = Pengumuman::latest()->take(5)->get();
 
-        return view('berita.show', compact('berita', 'randomPosts', 'jumlahKomentar', 'komentar'));
+
+
+        return view('berita.show', compact('berita', 'randomPosts', 'jumlahKomentar', 'komentar', 'pengumumans'));
     }
 
 
@@ -73,7 +76,9 @@ class BeritaController extends Controller
             ->get();
 
         $categories = Category::orderByDesc('id')->get();
+        $pengumumans = Pengumuman::latest()->take(5)->get();
 
-        return view('berita.index', compact('berita', 'latestPosts', 'categories'));
+
+        return view('berita.index', compact('berita', 'latestPosts', 'categories', 'pengumumans'));
     }
 }

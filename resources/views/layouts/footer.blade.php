@@ -3,6 +3,7 @@
         <!-- Kiri -->
         <div class="lg:w-1/2 flex flex-col space-y-4">
             <div class="flex items-center space-x-4">
+                <img src="{{ asset('assets/images/logo-dinas.png') }}" alt="Logo SLB" class="w-20 h-20">
                 <img src="{{ asset('assets/images/logo-kemendikbud.png') }}" alt="Logo SLB" class="w-20 h-20">
                 <h3 class="text-2xl font-bold text-gray-300">SLB NEGERI 1 LEBONG</h3>
             </div>

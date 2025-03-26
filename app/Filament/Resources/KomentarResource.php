@@ -17,7 +17,10 @@ class KomentarResource extends Resource
 {
     protected static ?string $model = Komentar::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-inbox';
+
+    protected static ?string $navigationGroup = 'Manajemen Artikel';
+
 
     public static function form(Form $form): Form
     {
@@ -63,6 +66,7 @@ class KomentarResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

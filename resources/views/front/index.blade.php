@@ -227,18 +227,19 @@
                     @endforeach
 
                 </div>
+                <!-- Tombol Prev -->
+                <button @click="scrollPrev"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    ‹
+                </button>
+                <!-- Tombol Next -->
+                <button @click="scrollNext"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    ›
+                </button>
             </div>
 
-            <!-- Tombol Prev -->
-            <button @click="scrollPrev"
-                class="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                ‹
-            </button>
-            <!-- Tombol Next -->
-            <button @click="scrollNext"
-                class="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                ›
-            </button>
+
         </div>
 
         <!-- Modal -->
@@ -256,7 +257,8 @@
 
 
         <div class="text-center mt-6">
-            <a href="/galeri" class="text-blue-600 font-medium hover:underline">Lihat Semua Galeri →</a>
+            <a href="{{ route('galeri.foto') }}" class="text-blue-600 font-medium hover:underline">Lihat Semua Galeri
+                →</a>
         </div>
     </section>
 

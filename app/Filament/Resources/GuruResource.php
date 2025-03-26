@@ -17,7 +17,13 @@ class GuruResource extends Resource
 {
     protected static ?string $model = Guru::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-plus';
+
+    protected static ?string $navigationLabel = 'Guru';
+
+    protected static ?string $navigationGroup = 'Manajemen Profil';
+
+
 
     public static function form(Form $form): Form
     {
@@ -27,6 +33,7 @@ class GuruResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('nip')
+                    ->label('NIP')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('pendidikan')
                     ->required()
@@ -51,6 +58,7 @@ class GuruResource extends Resource
                 Tables\Columns\TextColumn::make('nama_guru')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nip')
+                    ->label('NIP')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('pendidikan')
                     ->searchable(),
@@ -78,6 +86,7 @@ class GuruResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

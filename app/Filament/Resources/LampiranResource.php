@@ -17,7 +17,12 @@ class LampiranResource extends Resource
 {
     protected static ?string $model = Lampiran::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-paper-clip';
+
+    protected static ?string $navigationGroup = 'Manajemen Profil';
+
+    protected static ?string $navigationLabel = 'Lampiran Kurikulum & Profil';
+
 
     public static function form(Form $form): Form
     {
@@ -80,6 +85,7 @@ class LampiranResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -19,7 +19,11 @@ class PengumumanResource extends Resource
 {
     protected static ?string $model = Pengumuman::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard';
+
+    protected static ?string $navigationLabel = 'Pengumuman';
+
+    protected static ?string $navigationGroup = 'Manajemen Profil';
 
     public static function form(Form $form): Form
     {
@@ -64,6 +68,7 @@ class PengumumanResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

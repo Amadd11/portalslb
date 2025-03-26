@@ -2,15 +2,21 @@
     <div class="container mx-auto max-w-7xl px-6 py-2 flex justify-between items-center">
         <!-- Logo -->
         <a href="{{ url('/') }}" class="flex items-center space-x-2 group">
-            <!-- Icon -->
-            <img src="{{ asset('assets/images/logo-kemendikbud.png') }}" alt="Logo Sekolah"
+            <!-- Logo Tambahan -->
+            <img src="{{ asset('assets/images/logo-dinas.png') }}" alt="Logo Sekolah"
                 class="w-14 h-14 object-contain group-hover:scale-110 transition-transform">
+
+            <!-- Logo Kemendikbud -->
+            <img src="{{ asset('assets/images/logo-kemendikbud.png') }}" alt="Logo Kemendikbud"
+                class="w-14 h-14 object-contain group-hover:scale-110 transition-transform">
+
             <!-- Text -->
             <div class="flex flex-col leading-tight">
                 <span class="text-xl font-extrabold text-blue-800">SLB NEGERI 1</span>
                 <span class="text-lg font-semibold text-black">Lebong</span>
             </div>
         </a>
+
         <!-- Desktop Menu -->
         <nav class="hidden md:flex space-x-5 items-center text-lg font-medium">
             <a href="/" class="text-black hover:text-blue-800 transition">Home</a>
