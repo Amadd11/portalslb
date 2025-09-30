@@ -18,6 +18,7 @@ use App\Filament\Resources\BeritaResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\BeritaResource\RelationManagers;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\DateTimePicker; // Pastikan ini diimpor jika belum
 
 class BeritaResource extends Resource
 {
@@ -33,32 +34,43 @@ class BeritaResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('category_id')
+                // Label untuk Kategori
+                Select::make('category_id')
                     ->label('Kategori')
                     ->relationship('category', 'nama_category')
                     ->required(),
-                Forms\Components\TextInput::make('judul')
+                // Label untuk Judul Artikel
+                TextInput::make('judul')
+                    ->label('Judul Artikel') // Label ditambahkan di sini
                     ->required()
                     ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                     ->lazy()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
+                // Slug otomatis di-generate, tidak perlu label eksplisit jika disabled
+                TextInput::make('slug')
+                    ->label('Slug')
+                    ->hidden()
                     ->disabled(),
-                Forms\Components\FileUpload::make('thumbnail')
-                    ->label('Thumbnail')
+                // Label untuk Thumbnail
+                FileUpload::make('thumbnail')
+                    ->label('Gambar Thumbnail') // Label diubah untuk lebih deskriptif
                     ->disk('public')
                     ->image()
                     ->directory('berita-thumbnails')
                     ->required(),
-                Forms\Components\RichEditor::make('isi')
+                // Label untuk Isi Artikel
+                RichEditor::make('isi')
+                    ->label('Isi Artikel') // Label ditambahkan di sini
                     ->disableToolbarButtons([
                         'blockquote', // atau tombol lain yang kamu tidak perlukan
                     ])
                     ->extraInputAttributes([
                         'style' => 'text-indent: 0; margin: 0;',
-                    ])->columnSpanFull(),
-                Forms\Components\FileUpload::make('attachments')
-                    ->label('Lampiran PDF')
+                    ])
+                    ->columnSpanFull(),
+                // Label untuk Lampiran PDF
+                FileUpload::make('attachments')
+                    ->label('Lampiran Dokumen PDF') // Label diubah untuk lebih deskriptif
                     ->disk('public')
                     ->directory('berita-attachments')
                     ->acceptedFileTypes(['application/pdf'])
@@ -66,8 +78,12 @@ class BeritaResource extends Resource
                     ->downloadable() // Aktifkan tombol download di CMS jika perlu
                     ->multiple()
                     ->reorderable(),
-                Forms\Components\DateTimePicker::make('tanggal_publish'),
-                Forms\Components\Select::make('status')
+                // Label untuk Tanggal Publikasi
+                DateTimePicker::make('tanggal_publish')
+                    ->label('Tanggal Publikasi'), // Label ditambahkan di sini
+                // Label untuk Status Publikasi
+                Select::make('status')
+                    ->label('Status Publikasi') // Label ditambahkan di sini
                     ->options([
                         'draft' => 'Draft',
                         'publish' => 'Publish',
@@ -81,27 +97,33 @@ class BeritaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('category.nama_category')
+                    ->label('Kategori') // Label untuk kolom tabel
                     ->sortable(),
                 Tables\Columns\TextColumn::make('judul')
+                    ->label('Judul Artikel') // Label untuk kolom tabel
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('thumbnail')
                     ->label('Thumbnail'),
                 Tables\Columns\TextColumn::make('tanggal_publish')
+                    ->label('Tanggal Publikasi') // Label untuk kolom tabel
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status'), // Label untuk kolom tabel
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada') // Label untuk kolom tabel
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada') // Label untuk kolom tabel
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
                 Tables\Filters\SelectFilter::make('status')
+                    ->label('Filter Status') // Label untuk filter
                     ->options([
                         'draft' => 'Draft',
                         'publish' => 'Publish',
@@ -109,7 +131,7 @@ class BeritaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

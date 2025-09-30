@@ -21,7 +21,7 @@ class JenjangResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Manajemen Profil';
+    protected static ?string $navigationGroup = 'Manajemen Siswa';
 
     protected static ?string $navigationLabel = 'Jenjang';
 
@@ -31,12 +31,14 @@ class JenjangResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nama_jenjang')
+                    ->label('Nama Jenjang')
                     ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                     ->lazy()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')
                     ->disabled()
+                    ->hidden()
             ]);
     }
 

@@ -19,21 +19,28 @@ class GaleriResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-camera';
 
+    protected static ?string $navigationLabel = 'Galeri'; // Added navigation label for consistency
+
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('judul')
+                    ->label('Judul Galeri') // Added label for clarity
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('deskripsi')
+                    ->label('Deskripsi') // Added label for clarity
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('gambar_url')
-                    ->label('Gambar')
+                    ->label('Gambar (Bisa Lebih dari Satu)')
                     ->image()
+                    ->multiple()
                     ->openable()
                     ->reorderable()
-                    ->directory('gallery'),
+                    ->directory('gallery')
+                    ->required(),
             ]);
     }
 
@@ -42,24 +49,29 @@ class GaleriResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('judul')
+                    ->label('Judul Galeri')
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('gambar_url')
-                    ->label('Gambar'),
+                    ->label('Gambar')
+                    ->limit(3)
+                    ->circular(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                // Add any filters here if needed, e.g., for categories or dates
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

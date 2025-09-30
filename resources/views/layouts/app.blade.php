@@ -11,7 +11,7 @@
         integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <title>@yield('title', 'Portal Sekolah')</title>
+    <title>@yield('title', 'SLBN 1 Lebong')</title>
     @vite('resources/css/app.css') {{-- Tailwind CSS --}}
 
 </head>

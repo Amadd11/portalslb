@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Kurikulum 2013')
-
 @section('content')
     <section class="container mx-auto py-12">
         <h1 class="text-4xl font-bold text-center pr-100 mb-8 uppercase">Kurikulum </h1>

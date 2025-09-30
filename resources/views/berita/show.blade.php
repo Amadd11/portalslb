@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', $berita->judul)
-
 @section('content')
     <section class="container mx-auto px-8 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 ">

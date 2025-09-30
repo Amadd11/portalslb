@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Portal Sekolah')
-
 @section('content')
     <section class="container py-12 px-4 mx-auto bg-white text-center">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-10 uppercase">Profil Kepegawaian di Sekolah Kami</h2>

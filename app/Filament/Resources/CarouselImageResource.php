@@ -21,6 +21,7 @@ class CarouselImageResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
+                    ->label('Judul Gambar') // Added label for clarity
                     ->maxLength(255),
                 Forms\Components\Select::make('group')
                     ->options([
@@ -28,10 +29,10 @@ class CarouselImageResource extends Resource
                         'event' => 'Event Carousel',
                         'galeri' => 'Galeri Carousel',
                     ])
-                    ->label('Carousel Group')
+                    ->label('Grup Carousel') // Added label for clarity
                     ->required(),
-
                 Forms\Components\FileUpload::make('path')
+                    ->label('Gambar') // Added label for clarity
                     ->image()
                     ->disk('public')
                     ->directory('carousel')
@@ -44,6 +45,7 @@ class CarouselImageResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Judul') // Added label for clarity
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('path')
                     ->label('Gambar')
@@ -55,31 +57,32 @@ class CarouselImageResource extends Resource
                         'success' => 'event',
                         'warning' => 'galeri',
                     ])
-                    ->label('Group')
+                    ->label('Grup') // Added label for clarity
                     ->sortable(),
-
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada') // Added label for clarity
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada') // Added label for clarity
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('group')
-                    ->label('Filter Group')
+                    ->label('Filter Grup') // Added label for clarity
                     ->options([
                         'homepage' => 'Homepage',
                         'event' => 'Event',
                         'galeri' => 'Galeri',
                     ])
-                    ->attribute('group')
+                    ->attribute('group'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

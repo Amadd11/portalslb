@@ -24,12 +24,15 @@ class FasilitasResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nama_fasilitas')
+                    ->label('Nama Fasilitas')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('deskripsi')
+                    ->label('Deskripsi')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('gambar_url')
+                    ->label('Upload Foto ')
                     ->disk('public')
                     ->image()
                     ->openable()

@@ -10,9 +10,12 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\DatePicker; // Pastikan ini diimpor
+use Filament\Forms\Components\Select; // Pastikan ini diimpor
+use Filament\Forms\Components\TextInput; // Pastikan ini diimpor
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\SiswaResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\SiswaResource\Pages;
 use App\Filament\Resources\SiswaResource\RelationManagers;
 
 class SiswaResource extends Resource
@@ -23,13 +26,14 @@ class SiswaResource extends Resource
 
     protected static ?string $navigationLabel = 'Siswa';
 
-    protected static ?string $navigationGroup = 'Manajemen Profil';
+    protected static ?string $navigationGroup = 'Manajemen Siswa';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nis')
+                    ->label('Nomor Induk Siswa (NIS)') // Label ditambahkan
                     ->required()
                     ->live() // Update otomatis saat user mengetik
                     ->afterStateUpdated(
@@ -39,28 +43,35 @@ class SiswaResource extends Resource
                     ->maxLength(255)
                     ->helperText(fn($get) => $get('nis_exists') ? '⚠️ NIS ini sudah digunakan' : ''),
                 Forms\Components\TextInput::make('nama_siswa')
+                    ->label('Nama Lengkap Siswa') // Label ditambahkan
                     ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                     ->lazy()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')
+                    ->label('Slug')
+                    ->hidden()
                     ->disabled(),
                 Forms\Components\Select::make('jenjang_id')
-                    ->label('Jenjang')
+                    ->label('Jenjang Pendidikan') // Label lebih deskriptif
                     ->relationship('jenjang', 'nama_jenjang')
                     ->required(),
                 Forms\Components\TextInput::make('tempat_lahir')
+                    ->label('Tempat Lahir') // Label ditambahkan
                     ->required()
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('tanggal_lahir')
+                    ->label('Tanggal Lahir') // Label ditambahkan
                     ->required(),
                 Forms\Components\Select::make('jenis_kelamin')
+                    ->label('Jenis Kelamin') // Label ditambahkan
                     ->options([
                         'L' => 'Laki-Laki',
                         'P' => 'Perempuan',
                     ])
                     ->required(),
                 Forms\Components\TextInput::make('kelas')
+                    ->label('Kelas') // Label ditambahkan
                     ->required()
                     ->maxLength(255),
             ]);
@@ -74,39 +85,49 @@ class SiswaResource extends Resource
                     ->label("NIS")
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama_siswa')
+                    ->label('Nama Siswa') // Label ditambahkan
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jenjang.nama_jenjang')
+                    ->label('Jenjang') // Label ditambahkan
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tempat_lahir')
+                    ->label('Tempat Lahir') // Label ditambahkan
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tanggal_lahir')
+                    ->label('Tanggal Lahir') // Label ditambahkan
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('jenis_kelamin'),
+                Tables\Columns\TextColumn::make('jenis_kelamin')
+                    ->label('Jenis Kelamin'), // Label ditambahkan
                 Tables\Columns\TextColumn::make('kelas')
+                    ->label('Kelas') // Label ditambahkan
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
+                    ->label('Dihapus Pada') // Label ditambahkan
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada') // Label ditambahkan
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada') // Label ditambahkan
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(), // Filter Data yang Terhapus
+                Tables\Filters\TrashedFilter::make()
+                    ->label('Filter Data Dihapus'), // Label ditambahkan
                 Tables\Filters\SelectFilter::make('jenjang_id')
-                    ->label('Jenjang')
+                    ->label('Jenjang Pendidikan') // Label ditambahkan
                     ->relationship('jenjang', 'nama_jenjang')
                     ->searchable()
                     ->preload(),
                 Tables\Filters\SelectFilter::make('jenis_kelamin')
-                    ->label('Jenis Kelamin')
+                    ->label('Jenis Kelamin') // Label ditambahkan
                     ->options([
                         'L' => 'Laki-Laki',
                         'P' => 'Perempuan',
@@ -114,7 +135,7 @@ class SiswaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

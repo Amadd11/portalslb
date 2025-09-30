@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Portal Sekolah')
-
 @section('content')
 
     <section class="container mx-auto py-12 px-4" x-data="{ openModal: false, modalImage: '' }">
@@ -32,15 +30,14 @@
             </div>
 
             <!-- Modal -->
-            <div x-show="openModal" x-cloak
+            <div x-show="openModal" x-cloak style="display: none;"
                 class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
-                @click.away="openModal = false">
+                @keydown.window.escape="openModal = false" @click.away="openModal = false">
+
                 <div class="relative">
-                    <img :src="modalImage" alt="Image" class="max-w-full max-h-[90vh] rounded-lg shadow-xl">
+                    <img :src="modalImage" alt="Image" class="max-w-full max-h-[90vh] rounded-lg shadow-lg">
                     <button @click="openModal = false"
-                        class="absolute top-2 right-2 bg-white rounded-full p-1 hover:bg-gray-200">
-                        ✕
-                    </button>
+                        class="absolute top-2 right-2 bg-white rounded-full p-1 hover:bg-gray-200">✕</button>
                 </div>
             </div>
         </div>

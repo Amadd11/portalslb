@@ -10,6 +10,8 @@ use App\Models\Pengumuman;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\FileUpload; // Pastikan ini diimpor jika belum
+use Filament\Forms\Components\TextInput; // Pastikan ini diimpor jika belum
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PengumumanResource\Pages;
@@ -30,16 +32,20 @@ class PengumumanResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('judul')
+                    ->label('Judul Pengumuman') // Label ditambahkan
                     ->required()
                     ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                     ->lazy()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('gambar_url')
+                    ->label('Gambar Pengumuman') // Label ditambahkan
                     ->image()
                     ->openable()
                     ->directory('pengumuman-attachments')
                     ->required(),
                 Forms\Components\TextInput::make('slug')
+                    ->label('Slug')
+                    ->hidden()
                     ->disabled(),
             ]);
     }
@@ -49,26 +55,27 @@ class PengumumanResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('judul')
+                    ->label('Judul Pengumuman') // Label ditambahkan
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('gambar_url')
-                    ->label('Gambar'),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
+                    ->label('Gambar'), // Label sudah ada
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada') // Label ditambahkan
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada') // Label ditambahkan
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                // Tambahkan filter di sini jika diperlukan
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

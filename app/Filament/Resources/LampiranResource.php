@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\LampiranResource\Pages;
-use App\Filament\Resources\LampiranResource\RelationManagers;
-use App\Models\Lampiran;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Lampiran;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\LampiranResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\LampiranResource\RelationManagers;
 
 class LampiranResource extends Resource
 {
@@ -23,16 +24,16 @@ class LampiranResource extends Resource
 
     protected static ?string $navigationLabel = 'Lampiran Kurikulum & Profil';
 
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('judul')
                     ->required()
-                    ->label('Judul File')
+                    ->label('Judul File') // Label sudah ada dan jelas
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('file_path')
+                    ->label('File Lampiran (PDF)') // Label lebih deskriptif
                     ->directory('lampiran')
                     ->disk('public')
                     ->acceptedFileTypes(['application/pdf'])
@@ -46,7 +47,7 @@ class LampiranResource extends Resource
                         'kurikulum smalb' => 'Kurikulum SMALB',
                     ])
                     ->required()
-                    ->label('Tipe Lampiran')
+                    ->label('Tipe Lampiran'), // Label sudah ada dan jelas
             ]);
     }
 
@@ -55,37 +56,43 @@ class LampiranResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('judul')
+                    ->label('Judul File') // Label ditambahkan
                     ->searchable(),
                 Tables\Columns\TextColumn::make('file_path')
+                    ->label('Path File') // Label ditambahkan untuk path file
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tipe')
+                    ->label('Tipe Lampiran') // Label ditambahkan
                     ->badge()
                     ->colors([
-                        'success' => 'kurikulum',
+                        'success' => fn(string $state): bool => Str::contains($state, 'kurikulum'), // Menggunakan Str::contains
                         'info' => 'profil',
                     ])
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada') // Label ditambahkan
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada') // Label ditambahkan
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('tipe')
+                    ->label('Filter Tipe Lampiran') // Label ditambahkan
                     ->options([
                         'profil' => 'Profil Sekolah',
                         'kurikulum sdlb' => 'Kurikulum SDLB',
-                        'kurikulum smplb' => 'Kurikulum SMLB',
+                        'kurikulum smplb' => 'Kurikulum SMPLB',
                         'kurikulum smalb' => 'Kurikulum SMALB',
                     ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

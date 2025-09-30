@@ -23,17 +23,22 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Manajemen Artikel';
 
+    protected static ?string $navigationLabel = 'Kategori';
+
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('nama_category')
+                    ->label('Nama Kategori')
                     ->required()
                     ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
                     ->lazy()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')
+                    ->hidden()
                     ->disabled(),
             ]);
     }
@@ -43,6 +48,7 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('nama_category')
+                    ->label('Nama Kategori')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
