@@ -101,17 +101,23 @@
                             <div class="swiper-wrapper">
                                 @foreach ($pengumumans as $pengumuman)
                                     <div class="swiper-slide flex flex-col items-center text-center">
-                                        <div class="relative w-full">
-                                            <img src="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
-                                                alt="{{ $pengumuman->judul }}"
-                                                class="rounded-lg shadow-md w-full h-[250px] object-cover" loading="lazy">
+                                        <div class="relative w-full aspect-[4/3]"> {{-- menjaga rasio 4:3 --}}
+                                            <a href="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
+                                                data-lightbox="pengumuman" data-title="{{ $pengumuman->judul }}">
+                                                <img src="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
+                                                    alt="{{ $pengumuman->judul }}"
+                                                    class="rounded-lg shadow-md w-full h-full object-cover" loading="lazy">
+                                            </a>
                                         </div>
-                                        <h4 class="mt-3 text-lg font-semibold text-gray-800">{{ $pengumuman->judul }}</h4>
+                                        <h4 class="mt-3 text-lg font-semibold text-gray-800">
+                                            {{ $pengumuman->judul }}
+                                        </h4>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
+
                     <div class="bg-gray-100 p-6 rounded-lg shadow-md">
                         <h3 class="text-2xl font-bold mb-2 text-center">Visi</h3>
                         <p class="text-gray-700 text-sm mb-4 text-center">Terwujudnya SLB Negeri 1 Lebong yang <span
@@ -174,70 +180,51 @@
         </div>
     </section>
 
-    {{-- Galeri --}}
-    <section id="galeri" class="py-12" x-data="autoScrollGaleri()">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-8 text-center">Galeri Sekolah</h2>
-            <div class="overflow-hidden relative group">
-                <div class="overflow-x-auto overflow-y-hidden whitespace-nowrap scroll-smooth no-scrollbar"
-                    x-ref="scrollContainer" @mouseenter="pauseScroll" @mouseleave="resumeScroll">
-                    <div class="flex gap-4 w-max">
-                        {{-- Loop Galeri (Original) --}}
-                        @foreach ($galeri as $foto)
-                            <div class="w-[180px] sm:w-[220px] md:w-[250px] flex-shrink-0">
-                                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
-                                    <img src="{{ asset(Storage::url($foto->gambar_url)) }}" alt="{{ $foto->judul }}"
-                                        @click="openImage('{{ asset(Storage::url($foto->gambar_url)) }}')"
-                                        class="absolute inset-0 w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-300">
-                                </div>
-                                <h4 class="font-semibold text-center mt-2 text-sm truncate">{{ $foto->judul }}</h4>
-                            </div>
-                        @endforeach
-                        {{-- Loop Galeri (Duplikat untuk efek seamless scroll) --}}
-                        @foreach ($galeri as $foto)
-                            <div class="w-[180px] sm:w-[220px] md:w-[250px] flex-shrink-0">
-                                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
-                                    <img src="{{ asset(Storage::url($foto->gambar_url)) }}" alt="{{ $foto->judul }}"
-                                        @click="openImage('{{ asset(Storage::url($foto->gambar_url)) }}')"
-                                        class="absolute inset-0 w-full h-full object-cover cursor-pointer hover:scale-105 transition duration-300">
-                                </div>
-                                <h4 class="font-semibold text-center mt-2 text-sm truncate">{{ $foto->judul }}</h4>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                {{-- Tombol Navigasi Galeri --}}
-                <button @click="scrollPrev"
-                    class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md hover:bg-white z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                </button>
-                <button @click="scrollNext"
-                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md hover:bg-white z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
+    {{-- Galeri Terbaru --}}
+    <section id="galeri" class="px-4 py-12 bg-white">
+        <div class="max-w-screen-xl px-4 mx-auto">
+            <div class="mb-8 text-center">
+                <h2 class="text-2xl sm:text-3xl font-bold text-black">Galeri Sekolah</h2>
+                <div class="w-32 h-1 mx-auto mt-2 bg-primary-dark"></div>
             </div>
-            <div class="text-center mt-8">
-                <a href="{{ route('galeri.foto') }}" class="text-blue-600 font-medium hover:underline">Lihat Semua Galeri
-                    →</a>
-            </div>
-        </div>
 
-        {{-- Modal untuk menampilkan gambar galeri --}}
-        <div x-show="openModal" x-cloak style="display: none;" @keydown.window.escape="openModal = false"
-            class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
-            <div class="relative" @click.away="openModal = false">
-                <img :src="modalImage" alt="Image" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
-                <button @click="openModal = false"
-                    class="absolute -top-2 -right-2 bg-white rounded-full p-1.5 text-gray-800 hover:bg-gray-200">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
+            <div class="relative w-full overflow-hidden">
+                <!-- Kontainer berjalan otomatis -->
+                <div class="inline-flex py-4 space-x-6 animate-scroll-gallery">
+                    {{-- Loop Galeri --}}
+                    @foreach ($galeri as $foto)
+                        <div class="flex-shrink-0 w-64 h-48 overflow-hidden rounded-lg shadow-md gallery-item">
+                            <a href="{{ asset(Storage::url($foto->gambar_url)) }}" data-lightbox="gallery"
+                                data-title="{{ $foto->judul }}">
+                                <img src="{{ asset(Storage::url($foto->gambar_url)) }}" alt="{{ $foto->judul }}"
+                                    class="object-cover w-full h-full transition duration-500 ease-in-out hover:scale-105">
+                            </a>
+                        </div>
+                    @endforeach
+
+                    {{-- Duplikasi konten supaya looping mulus --}}
+                    @foreach ($galeri as $foto)
+                        <div class="flex-shrink-0 w-64 h-48 overflow-hidden rounded-lg shadow-md gallery-item"
+                            aria-hidden="true">
+                            <a href="{{ asset(Storage::url($foto->gambar_url)) }}" data-lightbox="gallery"
+                                data-title="{{ $foto->judul }}">
+                                <img src="{{ asset(Storage::url($foto->gambar_url)) }}" alt="{{ $foto->judul }}"
+                                    class="object-cover w-full h-full transition duration-500 ease-in-out hover:scale-105">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <a href="{{ route('galeri.foto') }}"
+                    class="inline-flex items-center text-sm font-medium text-blue-800 hover:underline">
+                    Lihat Galeri Lengkap
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -259,77 +246,5 @@
 @endsection
 
 @push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inisialisasi Hero Swiper
-            new Swiper('.swiper-container', {
-                loop: true,
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false
-                },
-                effect: 'fade',
-                fadeEffect: {
-                    crossFade: true
-                },
-            });
-
-            // Inisialisasi Pengumuman Swiper
-            new Swiper('.pengumuman-slider', {
-                loop: true,
-                autoplay: {
-                    delay: 4000,
-                    disableOnInteraction: false
-                },
-                effect: 'slide',
-            });
-        });
-
-        // Inisialisasi Komponen AlpineJS untuk Galeri
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('autoScrollGaleri', () => ({
-                openModal: false,
-                modalImage: '',
-                scrollInterval: null,
-
-                init() {
-                    this.startScroll();
-                },
-                startScroll() {
-                    this.scrollInterval = setInterval(() => {
-                        const container = this.$refs.scrollContainer;
-                        if (container.scrollLeft + container.clientWidth >= container
-                            .scrollWidth / 2) {
-                            container.scrollLeft = 0;
-                        } else {
-                            container.scrollLeft += 1; // Kecepatan scroll
-                        }
-                    }, 25);
-                },
-                pauseScroll() {
-                    clearInterval(this.scrollInterval);
-                },
-                resumeScroll() {
-                    this.startScroll();
-                },
-                scrollNext() {
-                    this.$refs.scrollContainer.scrollBy({
-                        left: 300,
-                        behavior: 'smooth'
-                    });
-                },
-                scrollPrev() {
-                    this.$refs.scrollContainer.scrollBy({
-                        left: -300,
-                        behavior: 'smooth'
-                    });
-                },
-                openImage(url) {
-                    this.modalImage = url;
-                    this.openModal = true;
-                    this.pauseScroll(); // Jeda scroll saat modal terbuka
-                }
-            }));
-        });
-    </script>
+    <script src="{{ asset('js/swiper.js') }}"></script>
 @endpush

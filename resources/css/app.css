@@ -75,3 +75,17 @@
         @apply my-6 border-t;
     }
 }
+
+@keyframes scroll-gallery {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    } /* geser separuh karena ada duplikat */
+}
+
+.animate-scroll-gallery {
+    display: inline-flex;
+    animation: scroll-gallery 40s linear infinite;
+}

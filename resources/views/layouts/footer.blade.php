@@ -2,18 +2,27 @@
     <div class="container mx-auto flex flex-col lg:flex-row gap-8 items-center">
         <!-- Kiri -->
         <div class="lg:w-1/2 flex flex-col space-y-4">
-            <div class="flex items-center space-x-4">
-                <img src="{{ asset('assets/images/logo-slb1.png') }}" alt="Logo SLB"
-                    class="w-20 h-20 object-cover rounded-full">
-                <img src="{{ asset('assets/images/logo-dinas.png') }}" alt="Logo SLB" class="w-20 h-20">
-                <img src="{{ asset('assets/images/logo-kemendikbud.png') }}" alt="Logo SLB" class="w-20 h-20">
-                <h3 class="text-2xl font-bold text-gray-300">SLB NEGERI 1 LEBONG</h3>
+            <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-4 sm:space-y-0">
+                <div class="flex justify-center sm:justify-start space-x-4">
+                    <img src="{{ asset('assets/images/logo-slb1.png') }}" alt="Logo SLB"
+                        class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-full">
+                    <img src="{{ asset('assets/images/logo-dinas.png') }}" alt="Logo Dinas"
+                        class="w-16 h-16 sm:w-20 sm:h-20">
+                    <img src="{{ asset('assets/images/logo-kemendikbud.png') }}" alt="Logo Kemendikbud"
+                        class="w-16 h-16 sm:w-20 sm:h-20">
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-300 text-center sm:text-left">
+                    SLB NEGERI 1 LEBONG
+                </h3>
             </div>
+
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d509933.8502318125!2d101.6359573890625!3d-3.132149499999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e317a71a59da9c3%3A0xf273836985d4a7e8!2sSLB%20N%20Lebong!5e0!3m2!1sid!2sid!4v1742559839922!5m2!1sid!2sid"
-                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade" class="rounded shadow"></iframe>
+                width="100%" height="250" class="rounded shadow w-full sm:h-72 md:h-80" style="border:0;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
+
 
         <!-- Kanan -->
         <div class="lg:w-1/2 flex flex-col justify-between mt-15 space-y-4">

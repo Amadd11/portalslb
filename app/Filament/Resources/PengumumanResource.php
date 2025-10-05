@@ -40,6 +40,7 @@ class PengumumanResource extends Resource
                 Forms\Components\FileUpload::make('gambar_url')
                     ->label('Gambar Pengumuman') // Label ditambahkan
                     ->image()
+                    ->imageEditor()
                     ->openable()
                     ->directory('pengumuman-attachments')
                     ->required(),

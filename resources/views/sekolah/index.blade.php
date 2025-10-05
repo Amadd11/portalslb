@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Portal Sekolah')
-
 @section('content')
 
     <!-- Profil Sekolah Section -->
-    <section id="profil" class="py-12 px-4 sm:px-6 bg-white">
-        <h1 class="text-3xl font-bold text-center mb-12 uppercase">Profil <br>
-            SLB Negeri 1 Lebong</h1>
+    <section class="container mx-auto py-12 px-8">
+        <h1 class="mb-12 font-bold text-4xl uppercase text-center">
+            Profil <br> SLB Negeri 1 Lebong
+        </h1>
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
 
             <!-- Main Content -->
@@ -112,33 +111,32 @@
             <!-- Aside -->
             <aside class="space-y-8">
                 <!-- Pengumuman -->
-                <div class="bg-blue-50 p-3 rounded-lg shadow-md space-y-3">
+                <div class="bg-blue-50 p-4 rounded-lg shadow-md space-y-3">
                     <h3 class="text-xl font-semibold text-blue-800">📢 Pengumuman</h3>
-
-                    <!-- Slider Container -->
                     <div class="swiper pengumuman-slider relative max-w-full mx-auto">
                         <div class="swiper-wrapper">
                             @foreach ($pengumumans as $pengumuman)
                                 <div class="swiper-slide flex flex-col items-center text-center">
-                                    <!-- Gambar Pengumuman -->
-                                    <div class="relative w-full">
-                                        <img src="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
-                                            alt="{{ $pengumuman->judul }}"
-                                            class="rounded-lg shadow-md w-full h-[250px] object-cover" loading="lazy">
+                                    <div class="relative w-full aspect-[4/3]"> {{-- menjaga rasio 4:3 --}}
+                                        <a href="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
+                                            data-lightbox="pengumuman" data-title="{{ $pengumuman->judul }}">
+                                            <img src="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
+                                                alt="{{ $pengumuman->judul }}"
+                                                class="rounded-lg shadow-md w-full h-full object-cover" loading="lazy">
+                                        </a>
                                     </div>
-
-                                    <!-- Judul Pengumuman -->
-                                    <h3 class="mt-3 text-lg font-semibold text-gray-800">
+                                    <h4 class="mt-3 text-lg font-semibold text-gray-800">
                                         {{ $pengumuman->judul }}
-                                    </h3>
+                                    </h4>
                                 </div>
                             @endforeach
                         </div>
                     </div>
-
                 </div>
+
+
                 <!-- Artikel Terbaru -->
-                <div class="border border-gray-400 rounded-lg p-4">
+                <div class="border border-gray-300 rounded-lg p-4 shadow-md">
                     <h4 class="font-semibold mb-4">📰 Artikel Terbaru</h4>
                     <div class="space-y-4">
                         @foreach ($berita as $post)
@@ -150,13 +148,12 @@
                                     <p class="text-xs text-gray-500">
                                         {{ \Carbon\Carbon::parse($post->tanggal_publish)->format('d M Y') }}
                                     </p>
-                                    <p class="text-gray-700 text-sm mb-4">{{ Str::limit(strip_tags($post->isi), 70) }}</p>
+                                    <p class="text-gray-700 text-sm">{{ Str::limit(strip_tags($post->isi), 70) }}</p>
                                 </div>
                             </a>
                         @endforeach
                     </div>
                 </div>
-
             </aside>
 
         </div>

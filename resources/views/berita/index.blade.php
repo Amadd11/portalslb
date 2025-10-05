@@ -44,30 +44,27 @@
                 </form>
 
                 <!-- Pengumuman -->
-                <aside class="bg-blue-50 p-3 rounded-lg shadow space-y-4">
+                <aside class="bg-blue-50 p-4 rounded-lg shadow-md space-y-3">
                     <h3 class="text-xl font-semibold text-blue-800">📢 Pengumuman</h3>
-
-                    <!-- Slider Container -->
                     <div class="swiper pengumuman-slider relative max-w-full mx-auto">
                         <div class="swiper-wrapper">
                             @foreach ($pengumumans as $pengumuman)
                                 <div class="swiper-slide flex flex-col items-center text-center">
-                                    <!-- Gambar Pengumuman -->
-                                    <div class="relative w-full">
-                                        <img src="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
-                                            alt="{{ $pengumuman->judul }}"
-                                            class="rounded-lg shadow-md w-full h-[250px] object-cover" loading="lazy">
+                                    <div class="relative w-full aspect-[4/3]"> {{-- menjaga rasio 4:3 --}}
+                                        <a href="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
+                                            data-lightbox="pengumuman" data-title="{{ $pengumuman->judul }}">
+                                            <img src="{{ asset(Storage::url($pengumuman->gambar_url)) }}"
+                                                alt="{{ $pengumuman->judul }}"
+                                                class="rounded-lg shadow-md w-full h-full object-cover" loading="lazy">
+                                        </a>
                                     </div>
-
-                                    <!-- Judul Pengumuman -->
-                                    <h3 class="mt-3 text-lg font-semibold text-gray-800">
+                                    <h4 class="mt-3 text-lg font-semibold text-gray-800">
                                         {{ $pengumuman->judul }}
-                                    </h3>
+                                    </h4>
                                 </div>
                             @endforeach
                         </div>
                     </div>
-
                 </aside>
 
                 <!-- Artikel Terbaru -->
