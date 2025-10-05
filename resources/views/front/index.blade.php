@@ -50,8 +50,8 @@
                 <div class="flex items-center justify-center lg:justify-start space-x-4 pt-4">
                     <span class="text-sm text-gray-500">We Are In Socials Media :</span>
                     <div class="flex space-x-2">
-                        <a href="#" class="text-gray-600 hover:text-blue-600 transition"><i
-                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/slb.lebong?locale=id_ID"
+                            class="text-gray-600 hover:text-blue-600 transition"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="text-gray-600 hover:text-blue-600 transition"><i
                                 class="fab fa-twitter"></i></a>
                         <a href="#" class="text-gray-600 hover:text-blue-600 transition"><i
@@ -83,7 +83,7 @@
                     <p class="text-gray-700 mb-2">Assalamualaikum Warahmatullah Wabarakatuh</p>
                     <p class="text-gray-700 text-base leading-relaxed text-justify">
                         Alhamdulillah, kami bersyukur kepada Allah SWT karena dengan rahmat dan karunia-Nya, akhirnya kami
-                        dapat memperbarui Website SMK Negeri Contoh. Kami dengan tulus menyambut Anda di Website ini yang
+                        dapat memperbarui Website SLB Negeri 1 Lebong. Kami dengan tulus menyambut Anda di Website ini yang
                         ditujukan untuk semua unsur pimpinan, guru, karyawan, siswa, dan masyarakat umum.
                     </p>
                     <p class="text-gray-700 text-base leading-relaxed text-justify">
@@ -241,14 +241,24 @@
             </div>
         </div>
     </section>
+
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+
+            {{-- Tempel (Paste) kode counter Anda di sini --}}
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 text-center w-auto sm:w-48">
+                <div class="bg-green-100 text-green-600 rounded-full p-3 inline-block">
+                    <i class="fas fa-users text-2xl"></i>
+                </div>
+                <p class="text-3xl font-bold text-gray-800 mt-4">{{ number_format($totalVisits) }}</p>
+                <p class="text-sm text-gray-500 font-medium">Total Kunjungan</p>
+            </div>
+
+        </div>
+    </section>
 @endsection
 
 @push('scripts')
-    {{-- Pastikan Anda sudah memuat Swiper dan AlpineJS di layout utama (app.blade.php) atau muat di sini --}}
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Inisialisasi Hero Swiper

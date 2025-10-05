@@ -3,6 +3,8 @@
         <!-- Kiri -->
         <div class="lg:w-1/2 flex flex-col space-y-4">
             <div class="flex items-center space-x-4">
+                <img src="{{ asset('assets/images/logo-slb1.png') }}" alt="Logo SLB"
+                    class="w-20 h-20 object-cover rounded-full">
                 <img src="{{ asset('assets/images/logo-dinas.png') }}" alt="Logo SLB" class="w-20 h-20">
                 <img src="{{ asset('assets/images/logo-kemendikbud.png') }}" alt="Logo SLB" class="w-20 h-20">
                 <h3 class="text-2xl font-bold text-gray-300">SLB NEGERI 1 LEBONG</h3>
@@ -24,12 +26,12 @@
             <!-- Kontak -->
             <div class="mt-6">
                 <h4 class="font-bold text-xl mb-2">Kontak Kami</h4>
-                <p><i class="fas fa-envelope mr-2"></i> slbn1lebong@gmail.com</p>
-                <p><i class="fas fa-phone mr-2"></i> 0842 815131</p>
+                <p><i class="fas fa-envelope mr-2"></i> slbn1lebong12@gmail.com</p>
+                <p><i class="fas fa-phone mr-2"></i> 081329984943</p>
             </div>
             <!-- Sosmed -->
             <div class="flex space-x-4 mt-4">
-                <a href="#"
+                <a href="https://www.facebook.com/slb.lebong?locale=id_ID"
                     class="w-9 h-9 flex items-center justify-center border rounded-full hover:bg-gray-700 transition"><i
                         class="fab fa-facebook-f"></i></a>
                 <a href="#"

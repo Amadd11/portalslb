@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // Daftarkan middleware Anda di sini
+        $middleware->web(append: [
+            \App\Http\Middleware\CountVisitorMiddleware::class, // <-- Tambahkan di sini
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

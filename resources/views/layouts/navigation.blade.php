@@ -3,12 +3,16 @@
         <!-- Logo -->
         <a href="{{ url('/') }}" class="flex items-center space-x-2 group">
             <!-- Logo Tambahan -->
+            <img src="{{ asset('assets/images/logo-slb.png') }}" alt="Logo Kemendikbud"
+                class="w-14 h-14 object-cover group-hover:scale-110 transition-transform rounded-full">
+
             <img src="{{ asset('assets/images/logo-dinas.png') }}" alt="Logo Sekolah"
                 class="w-14 h-14 object-contain group-hover:scale-110 transition-transform">
 
             <!-- Logo Kemendikbud -->
             <img src="{{ asset('assets/images/logo-kemendikbud.png') }}" alt="Logo Kemendikbud"
                 class="w-14 h-14 object-contain group-hover:scale-110 transition-transform">
+
 
             <!-- Text -->
             <div class="flex flex-col leading-tight">
@@ -56,7 +60,8 @@
                 <div
                     class="absolute bg-white shadow rounded mt-2 py-2 w-40 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 translate-y-2">
                     <a href="{{ route('galeri.foto') }}" class="block px-4 py-2 text-black hover:bg-gray-100">Foto</a>
-                    <a href="{{ route('galeri.video') }}" class="block px-4 py-2 text-black hover:bg-gray-100">Video</a>
+                    <a href="{{ route('galeri.video') }}"
+                        class="block px-4 py-2 text-black hover:bg-gray-100">Video</a>
                 </div>
             </div>
             <a href="{{ route('kurikulum.index') }}" class="text-black hover:text-blue-800 transition">Kurikulum</a>
@@ -119,5 +124,5 @@
 </div>
 
 @push('scripts')
-    @vite('resources/js/toggle.js')
+    <script src="{{ asset('js/toggle.js') }}"></script>
 @endpush

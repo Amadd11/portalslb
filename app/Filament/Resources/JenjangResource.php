@@ -25,6 +25,7 @@ class JenjangResource extends Resource
 
     protected static ?string $navigationLabel = 'Jenjang';
 
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Form $form): Form
     {

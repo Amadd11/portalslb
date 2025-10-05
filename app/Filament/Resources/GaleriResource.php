@@ -34,9 +34,8 @@ class GaleriResource extends Resource
                     ->label('Deskripsi') // Added label for clarity
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('gambar_url')
-                    ->label('Gambar (Bisa Lebih dari Satu)')
+                    ->label('Gambar')
                     ->image()
-                    ->multiple()
                     ->openable()
                     ->reorderable()
                     ->directory('gallery')

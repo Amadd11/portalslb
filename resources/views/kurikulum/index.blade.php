@@ -165,6 +165,7 @@
         </div>
     </section>
 @endsection
+
 @push('scripts')
     <script src="{{ asset('js/swiper.js') }}"></script>
 @endpush
